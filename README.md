@@ -10,7 +10,7 @@ To use this:
 * in your application, choose "Payload Formats" from the navigation
 * paste the decoder function into the textarea
 
-Note: for the new(2021) TTN tsack you should use the ttn_stack_..... file
+Note: for the new(2021) TTN tsack you should use the ..._ttn_stack.js file
 
 The unit sends a few different payloads that are well documented. A startup packet is sent when the unit is first installed, or reboots. Status updates are sent every time a car is parked or driven away from a space. The decoder function handles all of these.
 
