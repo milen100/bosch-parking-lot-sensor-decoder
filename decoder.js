@@ -57,7 +57,7 @@ function Decoder(bytes, port) {
     } else {
       decoded.packet_type = "Heartbeat";
       if (bytes.length == 2) {
-        decoded.temperature = bytes[1];
+        decoded.temperature = bytes[1] & 0x80 ? bytes[1] - 0x100 : bytes[1];
       }
     }
 
