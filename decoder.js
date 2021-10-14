@@ -56,6 +56,9 @@ function Decoder(bytes, port) {
       decoded.packet_type = "Status";
     } else {
       decoded.packet_type = "Heartbeat";
+      if (bytes.length == 2) {
+        decoded.temperature = bytes[1];
+      }
     }
 
     decoded.occupied = (1 === bytes[0]) ? true : false;
