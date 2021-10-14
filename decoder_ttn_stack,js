@@ -1,0 +1,32 @@
+function decodeUplink(input) {
+   var decoded = {
+    "bytes": input.bytes,
+    "port": input.fPort,
+    "packet_type": "Unknown",
+    "len": 0
+    };
+    
+  // Parking status packets are on port 1
+  // Heartbeat packets are on port 2, but the same as status packets, so handled the same
+  if(1 === input.fPort || 2 === input.fPort) {
+    
+    if(1 === input.fPort) {
+      decoded.packet_type = "Status";
+    } else {
+      decoded.packet_type = "Heartbeat";
+      if (input.bytes.length == 2) {
+        decoded.temperature = input.bytes[1];
+      }
+    }
+
+    decoded.occupied = (1 === input.bytes[0]) ? true : false;
+  }
+  return {
+    data: {
+      bytes: input.bytes,
+      decoded: decoded
+    },
+    warnings: [],
+    errors: []
+  };
+}
