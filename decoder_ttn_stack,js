@@ -15,7 +15,7 @@ function decodeUplink(input) {
     } else {
       decoded.packet_type = "Heartbeat";
       if (input.bytes.length == 2) {
-        decoded.temperature = input.bytes[1];
+        decoded.temperature =  input.bytes[1] & 0x80 ? input.bytes[1] - 0x100 : input.bytes[1];
       }
     }
 
